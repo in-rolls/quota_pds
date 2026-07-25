@@ -22,7 +22,10 @@ gp <- arrow::read_parquet(here("data", "outcomes", "gp_outcomes.parquet")) |>
 OUTCOMES <- c("corruption_index",
               paste0("z_", c("o1_dup_share", "o2_photo_share", "o3_excess_ghost",
                              "o4_dead_soul", "o5_targeting", "o6a_irregular",
-                             "o6b_ghost_offtake_pc", "o6d_subsidised_no_tx")))
+                             "o6b_ghost_offtake_pc", "o6d_subsidised_no_tx",
+                             "a1_qty_pm_pc", "a1b_qty_pm_pc_2019",
+                             "a2_qty_per_card_pm", "a4_cards_per_100hh",
+                             "a5_hh_linked_share")))
 
 run_itt <- function(y, data) {
     feols(as.formula(paste0(
@@ -58,7 +61,8 @@ ri_p <- function(y, data, n_perm = N_RI) {
 }
 
 ri_results <- tibble(
-    outcome = c("corruption_index", "z_o1_dup_share", "z_o6a_irregular"),
+    outcome = c("corruption_index", "z_o1_dup_share", "z_o6a_irregular",
+                "z_a1_qty_pm_pc", "z_a4_cards_per_100hh"),
     ri_p = vapply(outcome, ri_p, numeric(1), data = gp)
 )
 tidy <- tidy |> left_join(ri_results, by = "outcome")

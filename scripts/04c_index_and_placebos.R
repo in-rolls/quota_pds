@@ -47,8 +47,11 @@ itt <- readr::read_csv(here("data", "audit", "04a_itt_estimates.csv"),
                        show_col_types = FALSE) |>
     filter(subset == "full", term == "treat_2020",
            outcome != "corruption_index") |>
-    mutate(q_bh = p.adjust(p, method = "BH"))
-write_audit(itt |> select(outcome, estimate, se, p, q_bh),
+    mutate(family = ifelse(grepl("^z_a", outcome), "access", "leakage")) |>
+    group_by(family) |>
+    mutate(q_bh = p.adjust(p, method = "BH")) |>
+    ungroup()
+write_audit(itt |> select(outcome, family, estimate, se, p, q_bh),
             "04c_component_qvalues.csv")
 
 message("04c complete")

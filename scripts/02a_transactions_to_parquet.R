@@ -116,4 +116,37 @@ if (!file.exists(done_flag)) {
     message("Already ingested, skipping")
 }
 
+# Ensure the card-level file carries qty_2019 (added after the first release);
+# rebuild from card_month.parquet, never from the raw csv
+offtake_pq <- here("data", "transactions", "card_offtake.parquet")
+card_month_pq <- here("data", "transactions", "card_month.parquet")
+have_cols <- names(arrow::open_dataset(offtake_pq)$schema)
+if (!"qty_2019" %in% have_cols) {
+    message("Adding qty_2019 to card_offtake")
+    max_month <- as.Date(dbGetQuery(con, sprintf(
+        "SELECT max(month) AS m FROM read_parquet(%s) WHERE month <= current_date",
+        dbQuoteString(con, card_month_pq)))$m)
+    last12_start <- seq(max_month, length.out = 2, by = "-11 months")[2]
+    dbExecute(con, sprintf("
+        COPY (
+            SELECT card_no,
+                   sum(n_bills) AS n_bills,
+                   count(*) AS n_months_ever,
+                   count(*) FILTER (month >= DATE '%s') AS n_months_last12,
+                   count(*) FILTER (month >= DATE '2019-01-01'
+                                    AND month < DATE '2020-01-01')
+                       AS n_months_2019,
+                   sum(qty) AS total_qty,
+                   sum(qty) FILTER (month >= DATE '%s') AS qty_last12,
+                   sum(qty) FILTER (month >= DATE '2019-01-01'
+                                    AND month < DATE '2020-01-01') AS qty_2019,
+                   min(month) AS first_bill,
+                   max(month) AS last_bill
+            FROM read_parquet(%s)
+            GROUP BY card_no
+        ) TO %s (FORMAT PARQUET, COMPRESSION ZSTD)",
+        last12_start, last12_start, dbQuoteString(con, card_month_pq),
+        dbQuoteString(con, offtake_pq)))
+}
+
 message("02a complete")

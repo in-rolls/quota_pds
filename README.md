@@ -35,7 +35,21 @@ Nothing moves. The confidence interval on the index rules out effects larger tha
 
 Two placebo outcomes say the design would have caught an effect if one existed. APL classification is set by state rules and leaves the pradhan no discretion; reservation does not predict it (p = .47). The benchmark absence rate, which would flag selection in the rolls linkage, is also flat (p = .91).
 
-Estimates live in `data/audit/04a_itt_estimates.csv`, `04b_open_seat_estimates.csv`, and `04c_placebo_estimates.csv`; formatted tables in `tabs/`.
+### Access and generosity
+
+The same machinery answers the benefit-side questions: do women pradhans deliver more grain, or get more families onto the rolls of the PDS itself? The measurement checks out almost embarrassingly well: subsidised households draw 5.01 kg per member-month against the NFSA entitlement of exactly 5 kg. The answers are again null:
+
+| Outcome (standardized) | ITT estimate | p |
+|---|---|---|
+| Grain per member-month, subsidised cards | −0.038 | .19 |
+| Same, 2019 only (pre-PMGKAY) | −0.034 | .31 |
+| Grain per card-month, all cards | −0.003 | .93 |
+| Cards per 100 electoral-roll households | −0.039 | .42 |
+| Share of roll households holding a card | −0.015 | .55 |
+
+In kilograms, the grain estimate is −0.02 kg per member-month on a 5.01 kg base, with a confidence interval that excludes changes beyond about 1%. Reservation history (2005-2015) shows nothing either, so this is not a lag story. The coverage outcomes come in two flavors because the linkage-based one (share of roll households with a matched card) conflates coverage with linkage recall; the count ratio (cards per 100 roll households) needs no person linkage at all, and both are flat. One nominal hit appears in the non-experimental open-seat arm (grain per card, p = .004); it has no counterpart in the ITT and we read it as noise.
+
+Estimates live in `data/audit/04a_itt_estimates.csv`, `04b_open_seat_estimates.csv`, `04c_placebo_estimates.csv`, and `04c_component_qvalues.csv`; formatted tables in `tabs/` (leakage: `itt_main.tex`, access: `access_main.tex`).
 
 ## Research design
 

@@ -18,6 +18,7 @@ MILAAN_BRIDGE <- file.path(MILAAN_DIR, "data", "ration", "panchayat_gp_bridge.pa
 MILAAN_CARDS <- file.path(MILAAN_DIR, "data", "ration", "cards")
 MILAAN_MEMBERS_HH <- file.path(MILAAN_DIR, "data", "households", "ration")
 MILAAN_PERSON_LINKS <- file.path(MILAAN_DIR, "data", "links", "persons")
+MILAAN_ROLLS_HH <- file.path(MILAAN_DIR, "data", "households", "rolls")
 
 TREATMENT_PANEL <- file.path(QUOTA_SHAADI_DIR, "data", "external", "quota_raj",
                              "shrug_gp_raj_05_20_block.parquet")

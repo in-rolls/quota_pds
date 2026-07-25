@@ -18,7 +18,10 @@ gp <- arrow::read_parquet(here("data", "outcomes", "gp_outcomes.parquet")) |>
 OUTCOMES <- c("corruption_index",
               paste0("z_", c("o1_dup_share", "o2_photo_share", "o3_excess_ghost",
                              "o4_dead_soul", "o5_targeting", "o6a_irregular",
-                             "o6b_ghost_offtake_pc", "o6d_subsidised_no_tx")))
+                             "o6b_ghost_offtake_pc", "o6d_subsidised_no_tx",
+                             "a1_qty_pm_pc", "a1b_qty_pm_pc_2019",
+                             "a2_qty_per_card_pm", "a4_cards_per_100hh",
+                             "a5_hh_linked_share")))
 
 CTRL_COVARS <- "lit_rate + f_lit_rate + log_pop + sc_share + st_share + dist_town"
 CTRL_HIST <- "treat_2005 + treat_2010 + treat_2015 + sc_2020 + st_2020 + obc_2020"

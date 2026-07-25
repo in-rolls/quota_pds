@@ -84,7 +84,7 @@ dbExecute(con, sprintf("
 
 dbExecute(con, sprintf("
     COPY (
-        SELECT c.card_no, c.card_type_raw,
+        SELECT c.card_no, c.card_type_raw, c.n_members_stated,
                c.card_type_raw IN ('BPL', 'SB', 'AN') AS poor,
                b.lgd_gp_code,
                (d.applicant_dev IS NOT NULL) AS dup_identity,
@@ -92,7 +92,8 @@ dbExecute(con, sprintf("
                g.n_ghost_pool, g.n_ghost_absent,
                g.n_bench_pool, g.n_bench_absent,
                g.dead_soul,
-               t.n_months_last12, t.n_months_2019, t.qty_last12, t.n_bills
+               t.n_months_last12, t.n_months_2019, t.qty_last12, t.qty_2019,
+               t.n_bills
         FROM read_parquet(%s, hive_partitioning = true) c
         JOIN bridge b ON c.panchayat_code = b.panchayat_code
                      AND c.block_code = b.block_code

@@ -54,4 +54,22 @@ aer_etable(
     notes = NOTES_OPEN
 )
 
+access_dict <- c(DICT,
+    "z_a1_qty_pm_pc" = "Grain/member-month, subsidised (z)",
+    "z_a1b_qty_pm_pc_2019" = "Grain/member-month, 2019 (z)",
+    "z_a4_cards_per_100hh" = "Cards per 100 roll households (z)",
+    "z_a5_hh_linked_share" = "Roll households with a card (z)")
+
+aer_etable(
+    models[c("z_a1_qty_pm_pc", "z_a1b_qty_pm_pc_2019",
+             "z_a4_cards_per_100hh", "z_a5_hh_linked_share")],
+    file = here("tabs", "access_main.tex"),
+    dict = access_dict,
+    drop = c("%sc_2020", "%st_2020", "%obc_2020"),
+    notes = paste0(NOTES_ITT,
+        " Quantity outcomes cover the 12 months before the 2021 snapshot",
+        " (the PMGKAY free-grain period) except the 2019 column.",
+        " Coverage denominators are 2018 electoral-roll households.")
+)
+
 message("05a complete")
