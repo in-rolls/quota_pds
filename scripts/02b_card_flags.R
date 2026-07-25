@@ -23,7 +23,7 @@ members_glob <- file.path(MILAAN_MEMBERS_HH, "*", "*.parquet")
 links_glob <- file.path(MILAAN_PERSON_LINKS, "*.parquet")
 
 dbExecute(con, sprintf("CREATE OR REPLACE TEMP TABLE bridge AS
-    SELECT panchayat_code, district_code, lgd_gp_code
+    SELECT panchayat_code, block_code, district_code, lgd_gp_code
     FROM read_parquet(%s)", dbQuoteString(con, MILAAN_BRIDGE)))
 
 # Duplicate identities over the FULL card set (fire2 logic in duckdb)
@@ -95,6 +95,7 @@ dbExecute(con, sprintf("
                t.n_months_last12, t.n_months_2019, t.qty_last12, t.n_bills
         FROM read_parquet(%s, hive_partitioning = true) c
         JOIN bridge b ON c.panchayat_code = b.panchayat_code
+                     AND c.block_code = b.block_code
                      AND c.district_code = b.district_code
         LEFT JOIN dup d ON c.applicant_dev = d.applicant_dev
                        AND c.father_dev = d.father_dev
