@@ -82,6 +82,11 @@ gp <- gp |>
 z_cols <- paste0("z_", OUTCOME_COLS)
 gp$corruption_index <- anderson_index(as.matrix(gp[, z_cols]))
 
+# Census covariates were only needed for the targeting residual; dropping
+# them here keeps the treatment table the single source in 04x joins
+gp <- gp |> select(-lit_rate, -f_lit_rate, -log_pop, -sc_share, -st_share,
+                   -agr_share, -dist_town, -dist_samiti_2020, -district)
+
 arrow::write_parquet(gp, here("data", "outcomes", "gp_outcomes.parquet"))
 
 comp_cor <- round(cor(gp[, z_cols], use = "pairwise.complete.obs"), 3)

@@ -17,7 +17,7 @@ treat <- panel |>
     transmute(
         lgd_gp_code,
         treat_2020, treat_2015, treat_2010, treat_2005,
-        winner_female_2020, count_treated,
+        winner_female_2020 = female_winner_2020, count_treated,
         legacy_dose = treat_2005 + treat_2010 + treat_2015,
         sc_2020, st_2020, obc_2020,
         dist_samiti_2020,

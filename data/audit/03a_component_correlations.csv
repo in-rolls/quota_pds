@@ -1,0 +1,9 @@
+z_o1_dup_share,z_o2_photo_share,z_o3_excess_ghost,z_o4_dead_soul,z_o5_targeting,z_o6a_irregular,z_o6b_ghost_offtake_pc,z_o6d_subsidised_no_tx,component
+1,0.058,-0.047,0,0.034,0.129,0.558,0.221,z_o1_dup_share
+0.058,1,-0.038,-0.016,0.04,0.07,0.19,0.103,z_o2_photo_share
+-0.047,-0.038,1,0.09,0.056,-0.017,-0.012,-0.124,z_o3_excess_ghost
+0,-0.016,0.09,1,-0.037,0.017,-0.06,-0.043,z_o4_dead_soul
+0.034,0.04,0.056,-0.037,1,0.079,0.17,0.161,z_o5_targeting
+0.129,0.07,-0.017,0.017,0.079,1,-0.022,0.396,z_o6a_irregular
+0.558,0.19,-0.012,-0.06,0.17,-0.022,1,0.238,z_o6b_ghost_offtake_pc
+0.221,0.103,-0.124,-0.043,0.161,0.396,0.238,1,z_o6d_subsidised_no_tx

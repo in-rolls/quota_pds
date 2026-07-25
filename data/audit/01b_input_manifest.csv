@@ -1,0 +1,10 @@
+role,path,bytes,mtime,md5
+ration_cards,/Users/soodoku/Documents/GitHub/jaali/data/rural_rationcard.csv.gz,309705780,2026-06-20 20:49:06.681207,1f7da471a24737e6eb1e50883c095872
+photo_manifest,/Users/soodoku/Documents/GitHub/jaali/out_full/manifest.parquet,553273092,2026-06-20 09:35:13.668858,NA
+forensic_summary,/Users/soodoku/Documents/GitHub/jaali/out_full/forensic_summary.csv,305,2026-06-20 20:51:48.595027,63113329d26caa009f9d60fdd59922ca
+milaan_bridge,/Users/soodoku/Documents/GitHub/milaan_raj/data/ration/panchayat_gp_bridge.parquet,266545,2026-07-24 21:15:32.896243,1833a1292b8a6f1626de51bc28488566
+treatment_panel,/Users/soodoku/Documents/GitHub/quota_shaadi/data/external/quota_raj/shrug_gp_raj_05_20_block.parquet,2240870,2026-07-23 23:10:33.892459,15ad0a8a1c96ec2470b0793573dc8a34
+raj_05_20,/Users/soodoku/Documents/GitHub/quota_shaadi/data/external/quota_raj/raj_05_20.parquet,925856,2026-07-23 23:10:33.897179,1cf1385e8b59f49ccd0ba207cbcebb99
+repo_jaali,/Users/soodoku/Documents/GitHub/jaali,NA,NA,503283db4d2eb28a8dfb047577643484a0a28bc0
+repo_milaan,/Users/soodoku/Documents/GitHub/milaan_raj,NA,NA,6e7298ed736da9c4e2891c414732648383c7af4e
+repo_quota_shaadi,/Users/soodoku/Documents/GitHub/quota_shaadi,NA,NA,6cbbfbdcae6865b0b29a3074ad4782a007363fc1

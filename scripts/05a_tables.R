@@ -27,7 +27,7 @@ aer_etable(
              "z_o3_excess_ghost", "z_o6a_irregular")],
     file = here("tabs", "itt_main.tex"),
     dict = DICT,
-    drop = c("sc_2020", "st_2020", "obc_2020"),
+    drop = c("%sc_2020", "%st_2020", "%obc_2020"),
     notes = NOTES_ITT
 )
 
@@ -50,7 +50,7 @@ aer_etable(
     open_models,
     file = here("tabs", "open_seats.tex"),
     dict = DICT,
-    keep = "winner_female_2020",
+    keep = "%winner_female_2020",
     notes = NOTES_OPEN
 )
 

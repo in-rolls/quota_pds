@@ -12,6 +12,11 @@ get_duck <- function() {
     DBI::dbExecute(con, sprintf("SET memory_limit = '%s'", DUCKDB_MEMORY_LIMIT))
     DBI::dbExecute(con, sprintf("SET threads = %d", DUCKDB_THREADS))
     DBI::dbExecute(con, sprintf("SET temp_directory = '%s'", here("data", "tmp")))
+    DBI::dbExecute(con, "SET max_temp_directory_size = '60GiB'")
+    # Autoloading of icu fails in this environment; date/locale functions
+    # (strptime %b, timestamp-date comparisons) need it loaded explicitly
+    try(DBI::dbExecute(con, "INSTALL icu"), silent = TRUE)
+    try(DBI::dbExecute(con, "LOAD icu"), silent = TRUE)
     con
 }
 

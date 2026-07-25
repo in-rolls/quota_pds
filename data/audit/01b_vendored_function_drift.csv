@@ -1,0 +1,10 @@
+fn,identical
+normalize_string,TRUE
+run_t_tests,TRUE
+compute_district_chisq,TRUE
+convert_sci_to_decimal,TRUE
+aggressive_round,TRUE
+format_coef_stars,TRUE
+format_se_parens,TRUE
+format_n_comma,TRUE
+aer_etable,TRUE
