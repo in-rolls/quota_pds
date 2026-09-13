@@ -17,7 +17,9 @@ run_script <- function(script_name) {
     log_msg(paste("Starting:", script_name))
     start_time <- Sys.time()
     tryCatch({
-        source(here("scripts", script_name))
+        status <- system2(file.path(R.home("bin"), "Rscript"),
+                          shQuote(here("scripts", script_name)))
+        if (status != 0L) stop("Rscript exited with status ", status)
         log_msg(sprintf("SUCCESS: %s (%.1fs)", script_name,
                         as.numeric(difftime(Sys.time(), start_time, units = "secs"))))
     }, error = function(e) {
@@ -36,5 +38,6 @@ run_script("04a_itt.R")
 run_script("04b_open_seats.R")
 run_script("04c_index_and_placebos.R")
 run_script("05a_tables.R")
+run_script("98_validate.R")
 
 log_msg("Pipeline finished")

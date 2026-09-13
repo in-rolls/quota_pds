@@ -12,3 +12,4 @@ renv/staging/
 renv/local/
 renv/cellar/
 renv/sandbox/
+!data/sources.json

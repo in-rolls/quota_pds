@@ -68,7 +68,7 @@ ri_results <- tibble(
 tidy <- tidy |> left_join(ri_results, by = "outcome")
 
 # Rotation-consistency subset: districts where 2015->2020 passes independence
-raj_panel <- arrow::read_parquet(RAJ_15_20_PANEL)
+raj_panel <- arrow::read_parquet(source_path("raj_panel"))
 chisq <- compute_district_chisq(raj_panel, "treat_2015", "treat_2020",
                                 "district_std_2020")
 rot_districts <- chisq |> filter(chisq_p > 0.05) |> pull(district_std_2020)

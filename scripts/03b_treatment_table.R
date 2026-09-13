@@ -1,6 +1,6 @@
 # 03b_treatment_table.R
 # Treatment, history, caste strata, FE ids, and normalized controls from the
-# quota_raj 2005-2020 panel (via quota_shaadi's snapshot).
+# canonical Rajasthan 2005-2020 panel and pinned Census covariates.
 
 library(here)
 library(dplyr)
@@ -8,7 +8,7 @@ library(dplyr)
 source(here("scripts", "00_config.R"))
 source(here("scripts", "00_utils.R"))
 
-panel <- arrow::read_parquet(TREATMENT_PANEL) |>
+panel <- treatment_panel() |>
     filter(!is.na(lgd_gp_code)) |>
     arrange(lgd_gp_code, match_distance) |>
     distinct(lgd_gp_code, .keep_all = TRUE)
