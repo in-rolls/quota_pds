@@ -1,6 +1,6 @@
 # 01b_snapshot_inputs.R
 # Provenance manifest for inputs consumed in place, and vendored-function
-# drift check against quota_shaadi.
+# drift check against quota_marriage.
 
 library(here)
 library(dplyr)
@@ -40,11 +40,11 @@ manifest <- files |>
                               else NA_character_)
     ) |>
     bind_rows(tibble(
-        role = c("repo_jaali", "repo_milaan", "repo_quota_shaadi"),
-        path = c(JAALI_DIR, MILAAN_DIR, QUOTA_SHAADI_DIR),
+        role = c("repo_jaali", "repo_milaan", "repo_quota_marriage"),
+        path = c(JAALI_DIR, MILAAN_DIR, QUOTA_MARRIAGE_DIR),
         bytes = NA_real_, mtime = NA_character_,
         md5 = c(repo_head(JAALI_DIR), repo_head(MILAAN_DIR),
-                repo_head(QUOTA_SHAADI_DIR))
+                repo_head(QUOTA_MARRIAGE_DIR))
     ))
 write_audit(manifest, "01b_input_manifest.csv")
 
@@ -67,7 +67,7 @@ extract_function_body <- function(lines, fn_name) {
 }
 
 local_lines <- readLines(here("scripts", "00_utils.R"))
-src_lines <- readLines(file.path(QUOTA_SHAADI_DIR, "scripts", "00_utils.R"))
+src_lines <- readLines(file.path(QUOTA_MARRIAGE_DIR, "scripts", "00_utils.R"))
 drift <- map_dfr(VENDORED, function(fn) {
     tibble(fn = fn,
            identical = identical(extract_function_body(src_lines, fn),

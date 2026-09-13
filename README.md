@@ -80,20 +80,20 @@ Nothing large is committed; `data/audit/` holds aggregate audit CSVs without per
 | [in-rolls/jaali](https://github.com/in-rolls/jaali) | Card CSVs, photo-hash manifest, forensic outputs | Clone as a sibling directory |
 | milaan_raj | Panchayat-to-GP bridge; ration-to-rolls person links | Sibling directory; see its README |
 | [local_elections_rajasthan](https://github.com/in-rolls/local_elections_rajasthan) | Canonical 2005–2020 election panel and LGD bridge | Immutable revision and SHA-256 in `data/sources.json` |
-| [quota_raj](https://github.com/in-rolls/quota_raj) | Census covariates by LGD code | Pinned `50fbe05` reference; only Census columns are read |
+| [quota_representation](https://github.com/in-rolls/quota_representation) | Census covariates by LGD code | Pinned `50fbe05` reference; only Census columns are read |
 
 Scale: 15.97M rural cards, 62.8M members, 13.6M cards bridged to 4,165 analysis GPs (49% reserved in 2020), 12.9M cards with transactions collapsed from 200M+ bills to card-month and card level (`data/transactions/bills.parquet` retains bill dates and grain quantities for month-level work, such as testing for electoral cycles in offtake).
 
 ## Reproduction
 
 ```bash
-git clone https://github.com/in-rolls/pds_pradhan
-cd pds_pradhan && Rscript -e 'renv::restore()'
+git clone https://github.com/in-rolls/quota_pds
+cd quota_pds && Rscript -e 'renv::restore()'
 export DATAVERSE_KEY=<your token>   # optional, files are public
 Rscript scripts/99_run_all.R
 ```
 
-Sibling directories expected at `../jaali` and `../milaan_raj` (paths overridable via `JAALI_DIR` and `MILAAN_DIR`). The provenance stage also compares vendored utility functions with `../quota_shaadi` (`QUOTA_SHAADI_DIR`); election data do not depend on its snapshots. Shared inputs resolve to `INDIA_DATA_HOME/{provider}/{ref}/{relative_path}`, with `INDIA_DATA_HOME` defaulting to `~/data`. A sibling file is used only if its SHA-256 matches; otherwise the immutable GitHub revision is downloaded, verified, and installed in the cache. Budget roughly 30 GB of transient disk and an hour, most of it the transaction download and scan. Every matching and construction stage writes an audit CSV to `data/audit/`.
+Sibling directories expected at `../jaali` and `../milaan_raj` (paths overridable via `JAALI_DIR` and `MILAAN_DIR`). The provenance stage also compares vendored utility functions with `../quota_marriage` (`QUOTA_MARRIAGE_DIR`); election data do not depend on its snapshots. Shared inputs resolve to `INDIA_DATA_HOME/{provider}/{ref}/{relative_path}`, with `INDIA_DATA_HOME` defaulting to `~/data`. A sibling file is used only if its SHA-256 matches; otherwise the immutable GitHub revision is downloaded, verified, and installed in the cache. Budget roughly 30 GB of transient disk and an hour, most of it the transaction download and scan. Every matching and construction stage writes an audit CSV to `data/audit/`.
 
 The canonical-input migration removes LGD 42097: its election name tied with a competing GP in the geographic match, so the shared bridge leaves that link unresolved. This drops 1,490 cards and one analysis GP. Among the 4,728 shared treatment GPs, 57 previously unknown 2020 winner-sex values become observed. The pinned Census reference also supplies mean village-to-town distance; the earlier snapshot summed distances, changing this control in 3,967 GPs. Reservation histories and the other model controls are unchanged for shared GPs. Rebuilding outcomes and all models gives a corruption-index ITT of −0.0262 (p = .539; 1,879 observations; 1,000-draw RI p = .519) and a fully controlled open-seat estimate of 0.1449 (p = .126; 921 observations).
 

@@ -1,5 +1,5 @@
 # 00_utils.R
-# Functions marked vendored are copied from quota_shaadi/scripts/00_utils.R;
+# Functions marked vendored are copied from quota_marriage/scripts/00_utils.R;
 # 01b_snapshot_inputs.R asserts they have not drifted.
 
 library(stringi)
@@ -45,7 +45,7 @@ anderson_index <- function(mat) {
 }
 
 # ============================================================================
-# VENDORED from quota_shaadi
+# VENDORED from quota_marriage
 # ============================================================================
 
 normalize_string <- function(input_string) {
@@ -328,4 +328,3 @@ aer_etable <- function(models, file, dict = NULL, digits = 2, notes = NULL,
     }
     invisible(wrapped_output)
 }
-

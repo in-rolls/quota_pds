@@ -1,5 +1,5 @@
 # 00_config.R
-# Central configuration for pds_pradhan
+# Central configuration for quota_pds
 
 library(here)
 
@@ -7,8 +7,8 @@ JAALI_DIR <- Sys.getenv("JAALI_DIR",
     unset = normalizePath(file.path(here(), "..", "jaali"), mustWork = FALSE))
 MILAAN_DIR <- Sys.getenv("MILAAN_DIR",
     unset = normalizePath(file.path(here(), "..", "milaan_raj"), mustWork = FALSE))
-QUOTA_SHAADI_DIR <- Sys.getenv("QUOTA_SHAADI_DIR",
-    unset = normalizePath(file.path(here(), "..", "quota_shaadi"), mustWork = FALSE))
+QUOTA_MARRIAGE_DIR <- Sys.getenv("QUOTA_MARRIAGE_DIR",
+    unset = normalizePath(file.path(here(), "..", "quota_marriage"), mustWork = FALSE))
 
 RATION_CARDS_CSV <- file.path(JAALI_DIR, "data", "rural_rationcard.csv.gz")
 PHOTO_MANIFEST <- file.path(JAALI_DIR, "out_full", "manifest.parquet")

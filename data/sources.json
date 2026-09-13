@@ -12,7 +12,7 @@
     "sha256": "b2a87dd960845f575de246c3e4bc46ce4034f598903d02568324a4d177a6cef6"
   },
   "raj_census": {
-    "provider": "quota_raj",
+    "provider": "quota_representation",
     "ref": "50fbe05662a8f2a84c66e5b262df4c6c0051503d",
     "path": "data/raj/shrug_gp_raj_05_10_block.parquet",
     "sha256": "5dba8b158d7e9420fb73fd1bc7644af28d368e4497d2f000dad1575b468234fb"
