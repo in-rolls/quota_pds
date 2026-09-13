@@ -18,10 +18,18 @@ repo_head <- function(d) {
 
 files <- tibble(
     role = c("ration_cards", "photo_manifest", "forensic_summary",
-             "milaan_bridge", "treatment_panel", "raj_05_20"),
+             "milaan_bridge"),
     path = c(RATION_CARDS_CSV, PHOTO_MANIFEST, FORENSIC_SUMMARY,
-             MILAAN_BRIDGE, TREATMENT_PANEL, RAJ_15_20_PANEL)
+             MILAAN_BRIDGE)
 )
+pins <- jsonlite::read_json(here("data", "sources.json"))
+files <- bind_rows(files, tibble(
+    role = names(pins),
+    path = map_chr(names(pins), source_path),
+    provider = map_chr(pins, "provider"),
+    ref = map_chr(pins, "ref"),
+    sha256 = map_chr(pins, "sha256")
+))
 stopifnot(all(file.exists(files$path)))
 
 manifest <- files |>

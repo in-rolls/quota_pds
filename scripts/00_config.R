@@ -20,10 +20,7 @@ MILAAN_MEMBERS_HH <- file.path(MILAAN_DIR, "data", "households", "ration")
 MILAAN_PERSON_LINKS <- file.path(MILAAN_DIR, "data", "links", "persons")
 MILAAN_ROLLS_HH <- file.path(MILAAN_DIR, "data", "households", "rolls")
 
-TREATMENT_PANEL <- file.path(QUOTA_SHAADI_DIR, "data", "external", "quota_raj",
-                             "shrug_gp_raj_05_20_block.parquet")
-RAJ_15_20_PANEL <- file.path(QUOTA_SHAADI_DIR, "data", "external", "quota_raj",
-                             "raj_05_20.parquet")
+source(here("scripts", "00_sources.R"))
 
 DATAVERSE_SERVER <- "dataverse.harvard.edu"
 RATION_DOI <- "doi:10.7910/DVN/FIFZEX"

@@ -89,7 +89,7 @@ gp <- gp |>
     )
 
 # Targeting discretion: |residual| of poor share on census poverty predictors
-panel <- arrow::read_parquet(TREATMENT_PANEL) |>
+panel <- treatment_panel() |>
     filter(!is.na(lgd_gp_code)) |>
     arrange(lgd_gp_code, match_distance) |>
     distinct(lgd_gp_code, .keep_all = TRUE) |>
