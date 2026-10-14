@@ -109,3 +109,7 @@ After preparing inputs, run `Rscript scripts/98_validate.R` for source checks an
 ## Related work
 
 Chattopadhyay and Duflo (2004, *Econometrica*) established that women pradhans change public-goods allocation; Beaman et al. (2012, *Science*) argued that exposure to them changes aspirations. This repository asks the governance-integrity question at administrative scale and finds that on PDS leakage, at least in Rajasthan circa 2021, the gender of the pradhan makes no detectable difference, while the leakage itself is easy to detect.
+
+<!-- adjacent:start -->
+
+<!-- adjacent:end -->
