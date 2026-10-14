@@ -112,4 +112,14 @@ Chattopadhyay and Duflo (2004, *Econometrica*) established that women pradhans c
 
 <!-- adjacent:start -->
 
+## 🔗 Adjacent Repositories
+
+- [in-rolls/quota_corruption](https://github.com/in-rolls/quota_corruption) — Women’s seat reservations and corruption in rural India: published bribery evidence and SEPRI survey analysis.
+- [in-rolls/quota_marriage](https://github.com/in-rolls/quota_marriage) — Gender quotas and marriage outcomes in Rajasthan and Uttar Pradesh
+- [in-rolls/quota_governance](https://github.com/in-rolls/quota_governance) — Women's political reservations and local governance in India
+- [in-rolls/local_elections_rajasthan](https://github.com/in-rolls/local_elections_rajasthan) — Rajasthan GP Election Reservation Status and Results for 2020--2022
+- [in-rolls/ration_bihar_2022](https://github.com/in-rolls/ration_bihar_2022) — Bihar Ration Cards 2022
+
+_Powered by [Adjacent](https://github.com/gojiplus/adjacent)_
+
 <!-- adjacent:end -->
