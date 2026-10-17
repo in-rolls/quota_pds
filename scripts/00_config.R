@@ -6,7 +6,7 @@ library(here)
 JAALI_DIR <- Sys.getenv("JAALI_DIR",
     unset = normalizePath(file.path(here(), "..", "jaali"), mustWork = FALSE))
 MILAAN_DIR <- Sys.getenv("MILAAN_DIR",
-    unset = normalizePath(file.path(here(), "..", "milaan_raj"), mustWork = FALSE))
+    unset = normalizePath(file.path(here(), "..", "ration_roll_link"), mustWork = FALSE))
 QUOTA_MARRIAGE_DIR <- Sys.getenv("QUOTA_MARRIAGE_DIR",
     unset = normalizePath(file.path(here(), "..", "quota_marriage"), mustWork = FALSE))
 

@@ -61,14 +61,14 @@ Estimates live in `data/audit/04a_itt_estimates.csv`, `04b_open_seat_estimates.c
 |---|---|
 | Duplicate identities | +0.019 | .49 | .55 |
 | Photo reuse | −0.022 | .52 |  |
-| Excess ghosts | Card adults (25-70) with no counterpart in the 2018 electoral rolls via the [milaan_raj](../milaan_raj) person linkage, minus the same GP's absence rate for male household heads (30-60), which nets out linkage recall |
+| Excess ghosts | Card adults (25-70) with no counterpart in the 2018 electoral rolls via the [ration_roll_link](../ration_roll_link) person linkage, minus the same GP's absence rate for male household heads (30-60), which nets out linkage recall |
 | Dead souls | Cards listing a member aged 85+ |
 | Targeting discretion | −0.021 | .59 |  |
 | Delivery regularity | Share of subsidised cards served in 10+ of the last 12 months (reversed) |
 | Ghost offtake | Grain drawn by duplicate- or photo-flagged subsidised cards, per card |
 | No-transaction cards | Subsidised cards with no bills at all |
 
-**Geography.** PDS panchayats map to LGD GP codes through the transliteration-and-skeleton cascade built in milaan_raj (85% of cards bridge cleanly); reservation histories and election-to-LGD links come directly from [local_elections_rajasthan](https://github.com/in-rolls/local_elections_rajasthan).
+**Geography.** PDS panchayats map to LGD GP codes through the transliteration-and-skeleton cascade built in ration_roll_link (85% of cards bridge cleanly); reservation histories and election-to-LGD links come directly from [local_elections_rajasthan](https://github.com/in-rolls/local_elections_rajasthan).
 
 ## Data
 
@@ -78,7 +78,7 @@ Nothing large is committed; `data/audit/` holds aggregate audit CSVs without per
 |---|---|---|
 | Harvard Dataverse [doi:10.7910/DVN/FIFZEX](https://doi.org/10.7910/DVN/FIFZEX) | 2021 Rajasthan PDS: transactions (9.5 GB, five parts) | `Rscript scripts/01a_download_transactions.R` |
 | [in-rolls/jaali](https://github.com/in-rolls/jaali) | Card CSVs, photo-hash manifest, forensic outputs | Clone as a sibling directory |
-| milaan_raj | Panchayat-to-GP bridge; ration-to-rolls person links | Sibling directory; see its README |
+| ration_roll_link | Panchayat-to-GP bridge; ration-to-rolls person links | Sibling directory; see its README |
 | [local_elections_rajasthan](https://github.com/in-rolls/local_elections_rajasthan) | Canonical 2005–2020 election panel and LGD bridge | Immutable revision and SHA-256 in `data/sources.json` |
 | [quota_representation](https://github.com/in-rolls/quota_representation) | Census covariates by LGD code | Pinned `50fbe05` reference; only Census columns are read |
 
@@ -93,7 +93,7 @@ export DATAVERSE_KEY=<your token>   # optional, files are public
 Rscript scripts/99_run_all.R
 ```
 
-Sibling directories expected at `../jaali` and `../milaan_raj` (paths overridable via `JAALI_DIR` and `MILAAN_DIR`). The provenance stage also compares vendored utility functions with `../quota_marriage` (`QUOTA_MARRIAGE_DIR`); election data do not depend on its snapshots. Shared inputs resolve to `INDIA_DATA_HOME/{provider}/{ref}/{relative_path}`, with `INDIA_DATA_HOME` defaulting to `~/data`. A sibling file is used only if its SHA-256 matches; otherwise the immutable GitHub revision is downloaded, verified, and installed in the cache. Budget roughly 30 GB of transient disk and an hour, most of it the transaction download and scan. Every matching and construction stage writes an audit CSV to `data/audit/`.
+Sibling directories expected at `../jaali` and `../ration_roll_link` (paths overridable via `JAALI_DIR` and `MILAAN_DIR`). The provenance stage also compares vendored utility functions with `../quota_marriage` (`QUOTA_MARRIAGE_DIR`); election data do not depend on its snapshots. Shared inputs resolve to `INDIA_DATA_HOME/{provider}/{ref}/{relative_path}`, with `INDIA_DATA_HOME` defaulting to `~/data`. A sibling file is used only if its SHA-256 matches; otherwise the immutable GitHub revision is downloaded, verified, and installed in the cache. Budget roughly 30 GB of transient disk and an hour, most of it the transaction download and scan. Every matching and construction stage writes an audit CSV to `data/audit/`.
 
 The canonical-input migration removes LGD 42097: its election name tied with a competing GP in the geographic match, so the shared bridge leaves that link unresolved. This drops 1,490 cards and one analysis GP. Among the 4,728 shared treatment GPs, 57 previously unknown 2020 winner-sex values become observed. The pinned Census reference also supplies mean village-to-town distance; the earlier snapshot summed distances, changing this control in 3,967 GPs. Reservation histories and the other model controls are unchanged for shared GPs. Rebuilding outcomes and all models gives a corruption-index ITT of −0.0262 (p = .539; 1,879 observations; 1,000-draw RI p = .519) and a fully controlled open-seat estimate of 0.1449 (p = .126; 921 observations).
 
