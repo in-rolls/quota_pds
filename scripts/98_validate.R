@@ -37,9 +37,9 @@ test_that("canonical histories and geographic joins preserve source rows", {
     panel <- arrow::read_parquet(source_path("raj_panel"))
     linked <- treatment_panel()
     expect_identical(linked[names(panel)], panel)
-    expect_equal(nrow(linked), 5334L)
-    expect_equal(sum(!is.na(linked$lgd_gp_code)), 4728L)
-    expect_false(anyDuplicated(arrow::read_parquet(source_path("raj_lgd_bridge"))$match_key) > 0)
+    expect_equal(nrow(linked), 6024L)
+    expect_equal(sum(!is.na(linked$lgd_gp_code)), 5311L)
+    expect_false(anyDuplicated(arrow::read_parquet(source_path("raj_lgd_bridge"))$source_id) > 0)
     census <- arrow::read_parquet(source_path("raj_census")) |>
         dplyr::filter(!is.na(lgd_gp_code)) |>
         dplyr::select(lgd_gp_code, dplyr::starts_with("pc01_")) |>
@@ -50,12 +50,10 @@ test_that("canonical histories and geographic joins preserve source rows", {
 
 test_that("study treatment rows match the canonical elected and reserved outcomes", {
     panel <- treatment_panel() |>
-        dplyr::filter(!is.na(lgd_gp_code)) |>
-        dplyr::arrange(lgd_gp_code, match_distance) |>
-        dplyr::distinct(lgd_gp_code, .keep_all = TRUE)
+        dplyr::filter(!is.na(lgd_gp_code))
     treatment <- arrow::read_parquet(here::here("data", "outcomes", "gp_treatment.parquet"))
     common <- setdiff(intersect(names(treatment), names(panel)), "winner_female_2020")
     expect_identical(treatment[common], panel[common])
-    expect_identical(treatment$winner_female_2020, panel$female_winner_2020)
+    expect_identical(treatment$winner_female_2020, panel$winner_woman_from_candidates_2020)
     expect_false(anyDuplicated(treatment$lgd_gp_code) > 0)
 })

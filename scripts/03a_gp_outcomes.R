@@ -91,8 +91,6 @@ gp <- gp |>
 # Targeting discretion: |residual| of poor share on census poverty predictors
 panel <- treatment_panel() |>
     filter(!is.na(lgd_gp_code)) |>
-    arrange(lgd_gp_code, match_distance) |>
-    distinct(lgd_gp_code, .keep_all = TRUE) |>
     transmute(
         lgd_gp_code,
         lit_rate = as.numeric(pc01_pca_p_lit) / pmax(as.numeric(pc01_pca_tot_p), 1),
@@ -102,7 +100,7 @@ panel <- treatment_panel() |>
         st_share = as.numeric(pc01_pca_p_st) / pmax(as.numeric(pc01_pca_tot_p), 1),
         agr_share = as.numeric(pc01_pca_main_al_p) / pmax(as.numeric(pc01_pca_tot_work_p), 1),
         dist_town = as.numeric(pc01_vd_dist_town),
-        dist_samiti_2020, district = lgd_district
+        dist_samiti_2020, district = district_std_2020
     )
 
 gp <- gp |> inner_join(panel, by = "lgd_gp_code")

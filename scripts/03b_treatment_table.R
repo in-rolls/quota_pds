@@ -9,19 +9,17 @@ source(here("scripts", "00_config.R"))
 source(here("scripts", "00_utils.R"))
 
 panel <- treatment_panel() |>
-    filter(!is.na(lgd_gp_code)) |>
-    arrange(lgd_gp_code, match_distance) |>
-    distinct(lgd_gp_code, .keep_all = TRUE)
+    filter(!is.na(lgd_gp_code))
 
 treat <- panel |>
     transmute(
         lgd_gp_code,
         treat_2020, treat_2015, treat_2010, treat_2005,
-        winner_female_2020 = female_winner_2020, count_treated,
+        winner_female_2020 = winner_woman_from_candidates_2020, count_treated,
         legacy_dose = treat_2005 + treat_2010 + treat_2015,
         sc_2020, st_2020, obc_2020,
         dist_samiti_2020,
-        district = lgd_district,
+        district = district_std_2020,
         lit_rate = as.numeric(pc01_pca_p_lit) / pmax(as.numeric(pc01_pca_tot_p), 1),
         f_lit_rate = as.numeric(pc01_pca_f_lit) / pmax(as.numeric(pc01_pca_tot_f), 1),
         log_pop = log1p(as.numeric(pc01_pca_tot_p)),

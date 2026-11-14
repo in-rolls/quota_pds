@@ -31,13 +31,17 @@ source_path <- function(name) {
 
 treatment_panel <- function() {
     panel <- arrow::read_parquet(source_path("raj_panel"))
-    geography <- arrow::read_parquet(source_path("raj_lgd_bridge"))
+    # The panel is keyed by its 2020 name; LGD codes are published per source record.
+    geography <- arrow::read_parquet(source_path("raj_lgd_bridge")) |>
+        dplyr::select(source_id_2010 = source_id, lgd_gp_code)
     covariates <- arrow::read_parquet(source_path("raj_census")) |>
         dplyr::filter(!is.na(.data$lgd_gp_code)) |>
         dplyr::select(lgd_gp_code, dplyr::starts_with("pc01_")) |>
         dplyr::distinct()
     stopifnot(!anyDuplicated(covariates$lgd_gp_code))
-    panel |>
-        dplyr::left_join(geography, by = "match_key", relationship = "many-to-one") |>
+    panel <- panel |>
+        dplyr::left_join(geography, by = "source_id_2010", relationship = "many-to-one") |>
         dplyr::left_join(covariates, by = "lgd_gp_code", relationship = "many-to-one")
+    stopifnot(!anyDuplicated(stats::na.omit(panel$lgd_gp_code)))
+    panel
 }

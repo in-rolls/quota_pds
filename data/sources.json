@@ -1,20 +1,20 @@
 {
   "raj_panel": {
     "provider": "local_elections_rajasthan",
-    "ref": "8773067fefe9c0ff549d0c9d12688018f19a156a",
-    "path": "data/fin/elections/raj_05_20.parquet",
-    "sha256": "8332d9b6de3943cdaebbe8cd786f2c03d399f82b1585ecb1a7c6a6b6ccaa3f4d"
+    "ref": "854c415c9a4bf3beef393c170419b1bf8f41b189",
+    "path": "data/release/linkage/sarpanch_2005_2020.parquet",
+    "sha256": "a12d693532f2c42fd5bb6390a11633d3b682004bb838852300f7029fe2bbe406"
   },
   "raj_lgd_bridge": {
     "provider": "local_elections_rajasthan",
-    "ref": "8773067fefe9c0ff549d0c9d12688018f19a156a",
-    "path": "data/fin/elections/gp_lgd_crosswalk.parquet",
-    "sha256": "b2a87dd960845f575de246c3e4bc46ce4034f598903d02568324a4d177a6cef6"
+    "ref": "854c415c9a4bf3beef393c170419b1bf8f41b189",
+    "path": "data/release/linkage/sarpanch_lgd.parquet",
+    "sha256": "55920c4dc5843f6e8521a00c66482ce2f129c47e60b1f04bdbecb6c8067d0517"
   },
   "raj_census": {
     "provider": "quota_representation",
-    "ref": "abf2de9e6e556c834767e6396297f905484fca81",
-    "path": "data/raj/shrug_gp_raj_05_10_block.parquet",
-    "sha256": "3d81868b7373b4fbc351514851a11d28cf409efe7f43604d6ffe2cfa389f1e45"
+    "ref": "fac76c4a7aa7b2911a41b4a08f74365abee0ccb4",
+    "path": "data/raj/shrug_gp_raj_05_20_block.parquet",
+    "sha256": "79709befce8648c85c9a53b257c8f879a6757743630be480ef790c458d7dec3e"
   }
 }
